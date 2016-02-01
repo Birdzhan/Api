@@ -1,11 +1,15 @@
 var express = require('express');
-//var body_parser = require('body-parser');
+var body_parser = require('body-parser');
 var app = express();
 
-app.get('/', function (req, res) {
-  res.json({Hello: 'World!'});
-});
+var port = 3000;
 
-app.listen(3000, function () {
-  console.log('App listening on port 3000!');
+/*app.get('/', function(req, res){
+	res.json({hello: "world"});
+});
+*/
+app.use('/api', require('./routes/api.js')(express));
+
+app.listen(port, function(){
+	console.log('Server listening on', port);
 });
